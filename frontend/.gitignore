@@ -1,0 +1,23 @@
+# ======================
+# Python / Backend
+# ======================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Banco de dados (SQLite)
+*.db
+*.sqlite
+
+# Ambiente virtual
+.venv/
+env/
+
+# Variáveis de ambiente (MUITO IMPORTANTE)
+.env
+
+# ======================
+# Outros
+# ======================
+coverage/
