@@ -1,7 +1,7 @@
-from src.nlp.gemini_service import gerar_resposta
+from src.nlp.gemini_service import gerar_resposta_com_fonte
 
 
-def generate_response(question: str, context: str, intent: str, entities: list[str]) -> str:
+def generate_response(question: str, context: str, intent: str, entities: list[str]) -> tuple[str, str]:
     prompt_context = f"""
     Você é o assistente virtual da plataforma YOUVISA.
 
@@ -20,12 +20,12 @@ def generate_response(question: str, context: str, intent: str, entities: list[s
     """
 
     try:
-        return gerar_resposta(question, prompt_context)
+        return gerar_resposta_com_fonte(question, prompt_context)
 
     except Exception as e:
         print(f"❌ Erro na IA: {e}")
 
-        return gerar_resposta_fallback(intent, context, entities)
+        return gerar_resposta_fallback(intent, context, entities), "fallback"
 
 
 def gerar_resposta_fallback(intent: str, context: str, entities: list[str]) -> str:

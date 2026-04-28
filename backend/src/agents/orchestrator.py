@@ -11,13 +11,14 @@ def process_chat(question: str, status_data: dict) -> dict:
         return {
             "resposta": "Não posso seguir esse tipo de solicitação. Posso ajudar apenas com dúvidas sobre o processo YOUVISA.",
             "intent": "bloqueado_governanca",
-            "entities": []
+            "entities": [],
+            "model_source": "governance_block"
         }
 
     intent = classify_intent(question)
     entities = extract_entities(question)
     context = build_context(status_data)
-    resposta = generate_response(question, context, intent, entities)
+    resposta, model_source = generate_response(question, context, intent, entities)
 
     session_id = str(uuid4())
 
@@ -32,5 +33,6 @@ def process_chat(question: str, status_data: dict) -> dict:
     return {
         "resposta": resposta,
         "intent": intent,
-        "entities": entities
+        "entities": entities,
+        "model_source": model_source
     }

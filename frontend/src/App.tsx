@@ -12,12 +12,24 @@ import ChatHistory from "./components/ChatHistory";
 
 import { checkHealth, getStatus } from "./services/api";
 
+type DocumentItem = {
+  id: string;
+  filename: string;
+  status: string;
+};
+
+type StatusData = {
+  status_global: string;
+  documentos: DocumentItem[];
+  tipos_faltando: string[];
+};
+
 const App: React.FC = () => {
   // Status da API (healthcheck)
   const [apiOk, setApiOk] = useState<boolean | null>(null);
 
   // Dados do status global vindos do backend (/status)
-  const [statusData, setStatusData] = useState<any | null>(null);
+  const [statusData, setStatusData] = useState<StatusData | null>(null);
 
   // Flag de carregamento do status
   const [loadingStatus, setLoadingStatus] = useState(false);
@@ -44,7 +56,7 @@ const App: React.FC = () => {
       try {
         const health = await checkHealth();
         setApiOk(health.status === "ok");
-      } catch (err) {
+      } catch {
         setApiOk(false);
       }
 

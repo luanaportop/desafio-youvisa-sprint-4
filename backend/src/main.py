@@ -126,7 +126,7 @@ async def upload_document(file: UploadFile = File(...)):
         reason = "Formato inválido. Use JPG ou PNG."
 
     # 2. VERIFICAÇÃO DA FSM
-    from process.fsm import validar_transicao
+    from src.process.fsm import validar_transicao
     status_base = "AGUARDANDO_DOCUMENTOS"
     
     if not validar_transicao(status_base, status_proposto.value):

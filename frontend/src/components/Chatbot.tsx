@@ -7,7 +7,7 @@ interface ChatMessage {
 }
 
 interface ChatbotProps {
-  statusData: any | null;
+  statusData: unknown;
 }
 
 const Chatbot: React.FC<ChatbotProps> = ({ statusData }) => {
@@ -64,7 +64,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ statusData }) => {
 
       setMessages((prev) => [...prev, botMessage]);
       setNextId((prev) => prev + 1);
-    } catch (error) {
+    } catch {
       const errorMessage: ChatMessage = {
         id: nextId + 1,
         from: "bot",

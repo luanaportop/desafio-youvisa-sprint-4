@@ -2,6 +2,7 @@
 // Responsável apenas pela interface e fluxo de upload de arquivos.
 
 import React, { useState } from "react";
+import axios from "axios";
 import toast from "react-hot-toast";
 import { uploadDocument } from "../services/api";
 
@@ -58,12 +59,13 @@ const UploadArea: React.FC<UploadAreaProps> = ({ onUploaded, onMessage }) => {
 
       // Limpa o input
       setFile(null);
-    } catch (err: any) {
-      onMessage(`Erro ao enviar: ${err.message ?? err}`);
-      if (err.response?.data?.detail) {
-        onMessage(err.response.data.detail)
+    } catch (err: unknown) {
+      const errMessage = err instanceof Error ? err.message : String(err);
+      onMessage(`Erro ao enviar: ${errMessage}`);
+      if (axios.isAxiosError(err) && err.response?.data?.detail) {
+        onMessage(String(err.response.data.detail));
       } else {
-        onMessage("Erro ao enviar documento.")
+        onMessage("Erro ao enviar documento.");
       }
     } finally {
       setLoading(false);

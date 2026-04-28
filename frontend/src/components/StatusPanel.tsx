@@ -3,8 +3,20 @@
 
 import React from "react";
 
+type DocumentItem = {
+  id: string;
+  filename: string;
+  status: string;
+};
+
+type StatusData = {
+  status_global: string;
+  documentos: DocumentItem[];
+  tipos_faltando: string[];
+};
+
 interface StatusPanelProps {
-  statusData: any | null;
+  statusData: StatusData | null;
   loading: boolean;
 }
 
@@ -27,7 +39,7 @@ const StatusPanel: React.FC<StatusPanelProps> = ({ statusData, loading }) => {
   }
 
   const globalStatus: string | null = statusData?.status_global ?? null;
-  const documentos: any[] = statusData?.documentos ?? [];
+  const documentos: DocumentItem[] = statusData?.documentos ?? [];
   const tiposFaltando: string[] = statusData?.tipos_faltando ?? [];
 
   const mapaTipos: Record<string, string> = {
@@ -48,7 +60,7 @@ const StatusPanel: React.FC<StatusPanelProps> = ({ statusData, loading }) => {
   } else if (globalStatus === "PENDENTE_CORRECAO") {
     statusColor = "#dc2626";
     statusText = "Alguns documentos precisam de correção.";
-  } else if (globalStatus === "AGUARDANDO_VALIDACAO") {
+  } else if (globalStatus === "AGUARDANDO_VALIDACAO" || globalStatus === "EM_ANALISE") {
     statusColor = "#ea580c";
 
     if (documentos.length === 0) {
