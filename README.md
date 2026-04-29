@@ -25,7 +25,15 @@ Nesta versão (Sprint 4), o sistema evolui para uma arquitetura mais robusta, ba
 - Luana Porto Pereira Gomes  
 - Luma Oliveira  
 - Priscilla Oliveira  
-- Paulo Bernardes  
+- Paulo Bernardes
+
+---
+
+## 👩‍🏫 Professores:
+### Tutor(a)
+- <a href="https://www.linkedin.com/in/leonardoorabona/">Leonardo Ruiz</a>
+### Coordenador(a)
+- <a href="https://www.linkedin.com/in/profandregodoi/">André Godoi</a>
 
 ---
 
@@ -177,6 +185,7 @@ graph TD
 
 ## 📂 Estrutura de Pastas
 
+```
 backend/src/
 ├ api/
 ├ models/
@@ -192,6 +201,7 @@ backend/src/
 
 frontend/src/
 
+```
 ---
 
 ## ⚙️ Tecnologias Utilizadas
